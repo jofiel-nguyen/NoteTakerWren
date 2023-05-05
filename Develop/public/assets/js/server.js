@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const uuid = require('uuid');
 
 const app = express();
@@ -8,6 +9,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+// Rate-limiting middleware
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
 
 // API routes
 let notes = [];
@@ -36,7 +44,8 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/notes', (req, res) => {
+// Apply rate limiting to the /notes route
+app.get('/notes', limiter, (req, res) => {
   res.sendFile(__dirname + '/public/notes.html');
 });
 

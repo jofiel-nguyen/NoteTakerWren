@@ -18,7 +18,7 @@ In this assignment, you'll get familiar with using Heroku and working with a ser
 ### Links
 
 - **GitHub Repository:** [https://github.com/nhunguyen-debug/module11-3xpress-wren.git](https://github.com/nhunguyen-debug/module11-3xpress-wren.git)
-- **Heroku Deployment:** [https://module11-from-rice.herokuapp.com/](https://module11-from-rice.herokuapp.com/)
+
 
 ### Overview
 
